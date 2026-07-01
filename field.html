@@ -5,55 +5,63 @@
 <title>Witkowski Mechanical, Field Portal (Reference Prototype)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Open+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy-900:#0E2438; --navy-700:#1D4364;
-    --blue-600:#1F6FB2; --blue-500:#2B83C9; --blue-50:#EAF3FA;
-    --bg:#EEF2F6; --surface:#FFFFFF;
-    --ink:#14202E; --ink-muted:#5A6B7B; --ink-faint:#8A98A6;
-    --border:#E3E9F0; --border-strong:#CFD9E3;
+    --navy-900:#081F57; --navy-700:#0C2C77;
+    --blue-600:#0C2C77; --blue-500:#163B8F; --blue-50:#E7ECF7;
+    --accent:#C8861B; /* Field portal accent (amber) */
+    --bg:#EDF0F5; --surface:#FFFFFF;
+    --ink:#1E2430; --ink-muted:#555B66; --ink-faint:#7A828C;
+    --border:#E4E7EC; --border-strong:#CDD3DB;
     --green:#2E9E6B; --green-bg:#E7F4EE;
     --amber:#C8861B; --amber-bg:#FBF1DC;
-    --red:#D6453D; --red-bg:#FBE9E7;
+    --red:#DF1E1E; --red-bg:#FBE6E6;
     --code-orange:#E8742C; --code-green:#2E9E6B; --code-blue:#2B83C9; --code-yellow:#E5B83B;
-    --radius:12px; --shadow:0 1px 2px rgba(14,36,56,.06), 0 6px 20px rgba(14,36,56,.08);
+    --radius:12px; --shadow:0 1px 2px rgba(8,31,87,.05), 0 6px 20px rgba(8,31,87,.08);
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
-  body{background:var(--bg); color:var(--ink); font-family:"Inter",system-ui,sans-serif; font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased; min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:20px 12px 40px}
+  body{background:var(--bg); color:var(--ink); font-family:"Open Sans",system-ui,sans-serif; font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased; min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:20px 12px 40px}
 
-  .topline{width:100%; max-width:420px; display:flex; align-items:center; justify-content:space-between; margin-bottom:12px}
+  .topline{width:100%; max-width:430px; display:flex; align-items:center; justify-content:space-between; margin-bottom:12px}
   .topline .ref{font-size:11px; font-weight:600; color:var(--amber); background:var(--amber-bg); border:1px solid #EAD9AE; padding:4px 10px; border-radius:999px}
   .topline a{font-size:12px; font-weight:600; color:var(--ink-muted); text-decoration:none; border:1px solid var(--border); background:var(--surface); padding:6px 11px; border-radius:8px}
 
-  .phone{width:100%; max-width:420px; background:var(--surface); border-radius:26px; box-shadow:var(--shadow); overflow:hidden; border:1px solid var(--border-strong)}
-  .fhead{background:var(--navy-900); color:#fff; padding:16px 18px 15px; display:flex; align-items:center; gap:12px}
-  .fmark{width:34px; height:34px; border-radius:9px; flex:none; background:linear-gradient(145deg,var(--blue-500),var(--blue-600)); display:grid; place-items:center}
-  .fname{font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:14.5px; line-height:1.15}
-  .fsub{font-size:11px; color:#7C90A4}
-  .favatar{margin-left:auto; width:34px; height:34px; border-radius:50%; background:var(--navy-700); color:#fff; display:grid; place-items:center; font-weight:600; font-size:12px; font-family:"Space Grotesk",sans-serif}
+  .phone{width:100%; max-width:430px; background:var(--surface); border-radius:26px; box-shadow:var(--shadow); overflow:hidden; border:1px solid var(--border-strong)}
+  .fhead{background:var(--navy-900); color:#fff; padding:15px 17px; display:flex; align-items:center; gap:12px}
+  .fname{font-family:"Poppins",sans-serif; font-weight:600; font-size:14.5px; line-height:1.15}
+  .fsub{font-size:11px; color:#8CA1B6; display:flex; align-items:center; gap:7px; margin-top:2px}
+  .portal-badge{display:inline-block; font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#fff; background:var(--accent); padding:1px 7px; border-radius:5px}
+  .favatar{margin-left:auto; width:34px; height:34px; border-radius:50%; background:#12325A; color:#fff; display:grid; place-items:center; font-weight:600; font-size:12px; font-family:"Poppins",sans-serif}
 
   .fscroll{padding:16px 15px 22px}
-  .day{font-family:"Space Grotesk",sans-serif; font-size:17px; font-weight:600; margin:2px 0 2px}
+  .day{font-family:"Poppins",sans-serif; font-size:17px; font-weight:600; margin:2px 0}
   .daysub{font-size:12.5px; color:var(--ink-muted); margin-bottom:14px}
 
   .job{border:1px solid var(--border); border-left:4px solid var(--border-strong); border-radius:12px; padding:12px 13px; margin-bottom:11px; cursor:pointer; background:var(--surface)}
   .job.svc{border-left-color:var(--code-orange)} .job.install{border-left-color:var(--code-blue)} .job.est{border-left-color:var(--code-green)} .job.fu{border-left-color:var(--code-yellow)}
+  .job:active{transform:scale(.99)}
   .job-top{display:flex; align-items:center; gap:8px; margin-bottom:5px}
   .job-wo{font-size:11px; font-family:"IBM Plex Mono",monospace; color:var(--ink-faint); margin-left:auto}
-  .job-title{font-weight:600; font-size:14.5px}
+  .job-title{font-weight:600; font-size:14.5px; display:flex; align-items:center; gap:7px}
   .job-addr{font-size:12.5px; color:var(--ink-muted); margin-top:2px}
+  .pin-ind{font-size:11px}
   .badge{font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:6px; text-transform:uppercase; letter-spacing:.4px}
   .badge.svc{background:#FDEFE6; color:#9A4715} .badge.install{background:var(--blue-50); color:#1A5688} .badge.est{background:var(--green-bg); color:#1C6E48} .badge.fu{background:#FBF3D9; color:#7A5E12}
   .status-line{margin-top:8px; font-size:12px; font-weight:600}
-  .status-line.enroute{color:var(--blue-600)} .status-line.pending{color:var(--ink-faint)}
+  .status-line.enroute{color:var(--blue-500)} .status-line.pending{color:var(--ink-faint)}
 
-  .back{display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:600; color:var(--blue-600); cursor:pointer; margin-bottom:12px; background:none; border:0; padding:0; font-family:inherit}
-  .stages{display:flex; gap:5px; margin:2px 0 16px; flex-wrap:wrap}
-  .stage{flex:1; min-width:52px; text-align:center; font-size:9.5px; font-weight:600; color:var(--ink-faint); padding-top:16px; position:relative}
+  .back{display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:600; color:var(--blue-500); cursor:pointer; margin-bottom:12px; background:none; border:0; padding:0; font-family:inherit}
+
+  .ftabs{display:flex; gap:4px; background:var(--bg); border-radius:10px; padding:4px; margin:4px 0 16px}
+  .ftab{flex:1; text-align:center; padding:8px 4px; font-size:12.5px; font-weight:600; color:var(--ink-muted); border-radius:8px; cursor:pointer; border:0; background:transparent; font-family:inherit}
+  .ftab.active{background:var(--surface); color:var(--ink); box-shadow:0 1px 2px rgba(8,31,87,.08)}
+
+  .stages{display:flex; gap:5px; margin:0 0 16px; flex-wrap:wrap}
+  .stage{flex:1; min-width:48px; text-align:center; font-size:9.5px; font-weight:600; color:var(--ink-faint); padding-top:16px; position:relative}
   .stage::before{content:""; position:absolute; top:4px; left:50%; transform:translateX(-50%); width:11px; height:11px; border-radius:50%; background:var(--border-strong)}
-  .stage.done::before{background:var(--green)} .stage.active::before{background:var(--blue-600); box-shadow:0 0 0 3px var(--blue-50)}
+  .stage.done::before{background:var(--green)} .stage.active::before{background:var(--accent); box-shadow:0 0 0 3px var(--amber-bg)}
   .stage.done, .stage.active{color:var(--ink)}
 
   .pinned{background:var(--amber-bg); border:1px solid #EAD9AE; border-radius:10px; padding:11px 13px; font-size:13px; color:#7A5E12; margin-bottom:14px}
@@ -63,21 +71,59 @@
   .kv{display:flex; justify-content:space-between; gap:10px; padding:8px 0; border-bottom:1px solid var(--border); font-size:13.5px}
   .kv:last-child{border-bottom:0}
   .kv .k{color:var(--ink-muted)} .kv .v{font-weight:600; text-align:right}
+  .kv .v.call{color:var(--blue-500); text-decoration:none}
 
   .cap{display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:4px}
   .capbtn{border:1px solid var(--border-strong); border-radius:10px; background:var(--surface); padding:12px 10px; font:inherit; font-weight:600; font-size:13px; color:var(--ink); display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer}
   .capbtn svg{opacity:.7}
-  .capbtn.full{grid-column:1 / -1; background:var(--blue-600); border-color:var(--blue-600); color:#fff}
+  .capbtn.full{grid-column:1 / -1}
+  .capbtn.primary{background:var(--blue-600); border-color:var(--blue-600); color:#fff}
+  .capbtn.ghost{background:var(--surface)}
+  .capbtn.on{border-color:var(--accent); background:var(--amber-bg); color:#7A5E12}
 
   .notebox{border:1px solid var(--border); border-radius:10px; padding:11px 12px; font-size:13px; color:var(--ink-muted); background:#FAFCFE}
-  .photos{display:flex; gap:8px; margin-top:8px}
-  .photo{width:58px; height:58px; border-radius:9px; background:var(--blue-50); border:1px dashed var(--border-strong); display:grid; place-items:center; color:var(--blue-600); font-size:11px; font-weight:600}
+  .noteline{border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:12.5px; margin-top:8px}
+  .noteline .meta{font-size:10.5px; color:var(--ink-faint); margin-top:4px}
+  .photos{display:flex; gap:8px; margin-top:8px; flex-wrap:wrap}
+  .photo{width:56px; height:56px; border-radius:9px; background:var(--blue-50); border:1px dashed var(--border-strong); display:grid; place-items:center; color:var(--blue-500); font-size:10px; font-weight:600; text-align:center; cursor:pointer; overflow:hidden; padding:3px}
+  .photo.filled{background:var(--green-bg); border-style:solid; border-color:#BCE0CD; color:#1C6E48}
 
-  .statuspick{display:flex; flex-wrap:wrap; gap:7px; margin-top:4px}
+  .schips{display:flex; flex-wrap:wrap; gap:7px; margin-top:4px}
   .schip{font-size:12px; font-weight:600; padding:7px 11px; border-radius:8px; border:1px solid var(--border-strong); background:var(--surface); cursor:pointer}
   .schip.on{background:var(--green-bg); border-color:#BCE0CD; color:#1C6E48}
 
-  .foot{max-width:420px; width:100%; text-align:center; font-size:11.5px; color:var(--ink-faint); margin-top:16px; line-height:1.5}
+  .li{display:flex; justify-content:space-between; gap:10px; padding:9px 0; border-bottom:1px solid var(--border); font-size:13px}
+  .li:last-child{border-bottom:0}
+  .li .sub{font-size:11.5px; color:var(--ink-faint)}
+  .addrow{font-size:12.5px; font-weight:600; color:var(--blue-500); margin-top:8px; cursor:pointer; display:inline-block; background:none; border:0; padding:0; font-family:inherit}
+
+  .mini{border:1px solid var(--border-strong); border-radius:10px; padding:11px; margin-top:8px; background:#FAFCFE; display:flex; flex-direction:column; gap:8px}
+  .mini input, .mini select, .mini textarea{border:1px solid var(--border-strong); border-radius:8px; padding:9px 11px; font:inherit; font-size:13px; width:100%; background:var(--surface); color:var(--ink)}
+  .mini textarea{min-height:56px; resize:vertical}
+  .mini .capbtn{padding:10px}
+  .row2{display:grid; grid-template-columns:1fr auto; gap:8px; align-items:center}
+  .row2b{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+  .row3{display:grid; grid-template-columns:1fr 1fr auto; gap:8px; align-items:center}
+
+  .actionbar{display:flex; gap:9px; margin-top:20px}
+  .actionbar .capbtn{flex:1; flex-direction:row; justify-content:center}
+
+  .radio{display:flex; align-items:center; gap:11px; border:1px solid var(--border-strong); border-radius:10px; padding:12px 13px; margin-bottom:8px; cursor:pointer; font-size:13.5px; font-weight:600}
+  .radio .dot{width:17px; height:17px; border-radius:50%; border:2px solid var(--border-strong); flex:none}
+  .radio.on{border-color:var(--accent); background:var(--amber-bg)}
+  .radio.on .dot{border-color:var(--accent); background:var(--accent); box-shadow:inset 0 0 0 3px #fff}
+  .radio small{display:block; font-weight:400; color:var(--ink-muted); font-size:12px}
+  select, textarea{border:1px solid var(--border-strong); border-radius:8px; padding:9px 11px; font:inherit; font-size:13px; color:var(--ink); background:var(--surface); width:100%}
+  textarea{min-height:70px; resize:vertical}
+  .checklist{margin-top:6px}
+  .chk{display:flex; align-items:center; gap:10px; padding:7px 0; font-size:13px}
+  .chk .box{width:18px; height:18px; border-radius:5px; background:var(--green); color:#fff; display:grid; place-items:center; font-size:11px; flex:none}
+
+  .issue-opt{display:flex; align-items:center; gap:11px; border:1px solid var(--border-strong); border-radius:10px; padding:13px; margin-bottom:9px; cursor:pointer; font-size:14px; font-weight:600}
+  .issue-opt .ico{width:32px; height:32px; border-radius:8px; background:var(--amber-bg); color:var(--amber); display:grid; place-items:center; flex:none}
+  .issue-opt.on{border-color:var(--accent); background:var(--amber-bg)}
+
+  .foot{max-width:430px; width:100%; text-align:center; font-size:11.5px; color:var(--ink-faint); margin-top:16px; line-height:1.55}
   .hide{display:none !important}
 </style>
 
@@ -88,22 +134,22 @@
 
 <div class="phone">
   <div class="fhead">
-    <div class="fmark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></div>
+    <img src="assets/witkowski-logo.webp" alt="Witkowski Mechanical" style="width:36px;height:36px;object-fit:contain;flex:none">
     <div>
       <div class="fname">Witkowski Field</div>
-      <div class="fsub">Technician portal</div>
+      <div class="fsub">Technician portal <span class="portal-badge">Field</span></div>
     </div>
     <div class="favatar">KE</div>
   </div>
 
-  <!-- LIST VIEW -->
+  <!-- ============ LIST VIEW ============ -->
   <div class="fscroll" id="listView">
     <div class="day">Today's work</div>
     <div class="daysub">Tuesday, June 30, 2026 · Keith Eaton · 3 jobs assigned</div>
 
     <div class="job install" onclick="openJob()">
       <div class="job-top"><span class="badge install">Install</span><span class="job-wo">WO-14980</span></div>
-      <div class="job-title">Rooftop unit install</div>
+      <div class="job-title">Rooftop unit install <span class="pin-ind" title="Pinned note">&#128204;</span></div>
       <div class="job-addr">2200 Commerce Blvd, Baltimore MD</div>
       <div class="status-line enroute">&#9679; En route · 9:00 AM, 3.5 hr</div>
     </div>
@@ -123,7 +169,7 @@
     </div>
   </div>
 
-  <!-- DETAIL VIEW -->
+  <!-- ============ DETAIL VIEW ============ -->
   <div class="fscroll hide" id="detailView">
     <button class="back" onclick="closeJob()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg> Today's work</button>
 
@@ -140,52 +186,237 @@
       <div class="stage">Close</div>
     </div>
 
-    <div class="pinned"><b>Pinned note</b>Gate code 6668. Park in the rear lot, roof access via the north stairwell.</div>
-
-    <div class="sec">Assignment</div>
-    <div class="kv"><span class="k">Task</span><span class="v">Install</span></div>
-    <div class="kv"><span class="k">Scheduled</span><span class="v">Jun 30, 9:00 AM</span></div>
-    <div class="kv"><span class="k">Duration</span><span class="v">3.5 hr</span></div>
-    <div class="kv"><span class="k">Crew</span><span class="v">Keith E., Nick O.</span></div>
-    <div class="kv"><span class="k">Primary contact</span><span class="v">Building super</span></div>
-
-    <div class="sec">Work order description <span style="color:var(--blue-600)">(public)</span></div>
-    <div class="notebox">Replace 5 ton rooftop unit. Existing unit failed, condenser seized. New unit staged on site under PO-3082.</div>
-
-    <div class="sec">Time</div>
-    <div class="cap">
-      <button class="capbtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Start travel</button>
-      <button class="capbtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Arrive on site</button>
-      <button class="capbtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 8v8M8 12h8"/></svg>Start work</button>
-      <button class="capbtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>Pause</button>
+    <div class="ftabs">
+      <button class="ftab active" data-tab="d-details" onclick="fieldTab('d-details', this)">Details</button>
+      <button class="ftab" data-tab="d-history" onclick="fieldTab('d-history', this)">History</button>
+      <button class="ftab" data-tab="d-capture" onclick="fieldTab('d-capture', this)">Capture</button>
     </div>
 
-    <div class="sec">Notes and photos</div>
-    <div class="notebox">Timeline note, timestamped and attributed. Technicians can type informal observations here.</div>
-    <div class="photos"><div class="photo">+ Photo</div><div class="photo">IMG</div><div class="photo">IMG</div></div>
+    <!-- Details tab -->
+    <div id="d-details">
+      <div class="cap" style="margin-bottom:8px">
+        <button class="capbtn ghost" onclick="toggleBtn(this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>Start travel</button>
+        <button class="capbtn ghost" onclick="toggleBtn(this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>Arrive on site</button>
+      </div>
 
-    <div class="sec">Materials and expenses</div>
-    <div class="kv"><span class="k">Rooftop unit, 5 ton</span><span class="v">PO-3082</span></div>
-    <div class="kv"><span class="k">+ Add material or part</span><span class="v" style="color:var(--blue-600)">Add</span></div>
+      <div class="pinned"><b>Pinned note</b>Gate code 6668. Park in the rear lot, roof access via the north stairwell.</div>
 
-    <div class="sec">Status</div>
-    <div class="statuspick">
-      <span class="schip">Traveling</span>
-      <span class="schip on">Working</span>
-      <span class="schip">Paused</span>
-      <span class="schip">Needs return with part</span>
-      <span class="schip">Follow up required</span>
-      <span class="schip">Completed by tech</span>
+      <div class="sec">Customer and site</div>
+      <div class="kv"><span class="k">Customer</span><span class="v">Vine Street Apartments</span></div>
+      <div class="kv"><span class="k">Parent account</span><span class="v">Dominion Management</span></div>
+      <div class="kv"><span class="k">Primary contact</span><span class="v">Building super</span></div>
+      <div class="kv"><span class="k">Phone</span><a class="v call" href="tel:4105550163">410 555 0163</a></div>
+      <div class="kv"><span class="k">Address</span><span class="v">2200 Commerce Blvd</span></div>
+
+      <div class="sec">Work order</div>
+      <div class="kv"><span class="k">Task</span><span class="v">Install</span></div>
+      <div class="kv"><span class="k">Priority</span><span class="v">Nick Installs</span></div>
+      <div class="kv"><span class="k">Promised</span><span class="v">Jun 30, 9:00 AM</span></div>
+      <div class="kv"><span class="k">Crew</span><span class="v">Keith E., Nick O.</span></div>
+
+      <div class="sec">Description <span style="color:var(--blue-500)">(public)</span></div>
+      <div class="notebox">Replace 5 ton rooftop unit. Existing unit failed, condenser seized. New unit staged on site under PO-3082.</div>
     </div>
 
-    <div class="cap" style="margin-top:16px"><button class="capbtn full">Complete and close</button></div>
+    <!-- History tab -->
+    <div id="d-history" class="hide">
+      <div class="sec">Prior work at this customer</div>
+      <div class="li"><div><b>Rooftop unit, annual service</b><div class="sub">Mar 12, 2026 · Keith E. · Work performed</div></div><span class="badge install">Install</span></div>
+      <div class="li"><div><b>No cooling, second floor</b><div class="sub">Aug 3, 2025 · Brent R. · Work performed</div></div><span class="badge svc">Service</span></div>
+      <div class="li"><div><b>Replaced condenser fan motor</b><div class="sub">Jul 21, 2025 · Keith E. · Work performed</div></div><span class="badge svc">Service</span></div>
+      <div class="li"><div><b>Rooftop replacement estimate</b><div class="sub">Jun 30, 2025 · office · Quoted</div></div><span class="badge est">Estimate</span></div>
+      <div class="notebox" style="margin-top:12px">Prior visits, notes and photos travel with the customer. Useful when a problem repeats.</div>
+    </div>
+
+    <!-- Capture tab -->
+    <div id="d-capture" class="hide">
+      <div class="sec">Time</div>
+      <div class="cap">
+        <button class="capbtn" onclick="toggleClock(this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Clock in</button>
+        <button class="capbtn" onclick="toggleClock(this)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>Clock out</button>
+      </div>
+      <div class="schips">
+        <span class="schip">Traveling</span>
+        <span class="schip on">Working</span>
+        <span class="schip">Paused</span>
+      </div>
+
+      <div class="sec">Notes</div>
+      <button class="addrow" onclick="toggleEl('noteForm')">+ Add note (public or internal)</button>
+      <div class="mini hide" id="noteForm">
+        <textarea id="noteText" placeholder="Type your note, for example what you found or did"></textarea>
+        <div class="row2">
+          <select id="noteVis"><option>Internal</option><option>Public (customer visible)</option></select>
+          <button class="capbtn primary" style="flex-direction:row" onclick="addNote()">Add note</button>
+        </div>
+      </div>
+      <div id="noteList">
+        <div class="noteline">Old unit condenser seized, disconnect corroded. Replaced whip.<div class="meta">Keith E. · 10:12 AM · internal</div></div>
+      </div>
+
+      <div class="sec">Photos</div>
+      <div class="photos" id="photoList">
+        <div class="photo" onclick="pickFile(this,'photo')">+ Photo</div>
+        <div class="photo filled">IMG</div>
+        <div class="photo filled">IMG</div>
+      </div>
+
+      <div class="sec">Materials and parts</div>
+      <div id="matList">
+        <div class="li"><div><b>Rooftop unit, 5 ton</b><div class="sub">Qty 1 · PO-3082</div></div><span>$6,420</span></div>
+        <div class="li"><div><b>Whip, 6 ft</b><div class="sub">Qty 1</div></div><span>$28</span></div>
+      </div>
+      <button class="addrow" onclick="toggleEl('matForm')">+ Add material or part</button>
+      <div class="mini hide" id="matForm">
+        <input id="matName" placeholder="Part name">
+        <div class="row3">
+          <input id="matQty" placeholder="Qty">
+          <input id="matCost" placeholder="Unit cost">
+          <button class="capbtn primary" style="flex-direction:row" onclick="addMat()">Add</button>
+        </div>
+      </div>
+
+      <div class="sec">Expenses</div>
+      <div id="expList">
+        <div class="li"><div><b>7-Eleven</b><div class="sub">Travel · receipt attached · billable</div></div><span>$14</span></div>
+      </div>
+      <button class="addrow" onclick="toggleEl('expForm')">+ Add expense (type, amount, vendor, receipt)</button>
+      <div class="mini hide" id="expForm">
+        <div class="row2b">
+          <select id="expType"><option>Material</option><option>Travel</option><option>Dump fee (TBD)</option><option>Service fee (TBD)</option><option>Other</option></select>
+          <input id="expAmt" placeholder="Amount">
+        </div>
+        <input id="expVendor" placeholder="Vendor">
+        <div class="row2">
+          <button class="capbtn ghost" style="flex-direction:row" onclick="pickFile(this,'receipt')">Attach receipt…</button>
+          <button class="capbtn primary" style="flex-direction:row" onclick="addExp()">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actionbar">
+      <button class="capbtn ghost" onclick="showIssue()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Report an issue</button>
+      <button class="capbtn primary" onclick="showComplete()">Complete work</button>
+    </div>
+  </div>
+
+  <!-- ============ COMPLETION VIEW ============ -->
+  <div class="fscroll hide" id="completeView">
+    <button class="back" onclick="backToDetail()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg> Back to job</button>
+    <div class="day">Complete work</div>
+    <div class="daysub">WO-14980 · Rooftop unit install</div>
+
+    <div class="sec">Set status</div>
+    <div class="radio on" onclick="pickRadio(this)"><span class="dot"></span><div>Completed by tech<small>Work is done, hand off to office for review and billing</small></div></div>
+    <div class="radio" onclick="pickRadio(this)"><span class="dot"></span><div>Needs return with part<small>Part on order, a follow up visit is needed</small></div></div>
+    <div class="radio" onclick="pickRadio(this)"><span class="dot"></span><div>Follow up required<small>Customer requested a callback or more work</small></div></div>
+    <div class="radio" onclick="pickRadio(this)"><span class="dot"></span><div>No show<small>Customer was not available at the scheduled time</small></div></div>
+    <div class="radio" onclick="pickRadio(this)"><span class="dot"></span><div>Cannot complete<small>Access denied or a safety issue on site</small></div></div>
+
+    <div class="sec">Resolution</div>
+    <select><option>Work Performed</option><option>No Show</option><option>Cancelled</option></select>
+
+    <div class="sec">Notes to office</div>
+    <textarea placeholder="For example: need to bill extra $200 for unexpected ductwork, or next time bring a filter"></textarea>
+
+    <div class="sec">Before you close</div>
+    <div class="checklist">
+      <div class="chk"><span class="box">&#10003;</span> Time captured</div>
+      <div class="chk"><span class="box">&#10003;</span> Photos and notes added</div>
+      <div class="chk"><span class="box">&#10003;</span> Materials and expenses recorded</div>
+      <div class="chk"><span class="box">&#10003;</span> Status selected</div>
+    </div>
+
+    <div class="actionbar"><button class="capbtn primary full" onclick="submitDone()">Submit to office</button></div>
+  </div>
+
+  <!-- ============ ISSUE VIEW ============ -->
+  <div class="fscroll hide" id="issueView">
+    <button class="back" onclick="backToDetail()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg> Back to job</button>
+    <div class="day">Report an issue</div>
+    <div class="daysub">Notifies the office and sets the matching status</div>
+
+    <div class="issue-opt" onclick="pickIssue(this)"><span class="ico">&#128230;</span> Missing part, need to order</div>
+    <div class="issue-opt" onclick="pickIssue(this)"><span class="ico">&#128682;</span> Customer not home</div>
+    <div class="issue-opt" onclick="pickIssue(this)"><span class="ico">&#128274;</span> Cannot access site</div>
+    <div class="issue-opt" onclick="pickIssue(this)"><span class="ico">&#128295;</span> Extra scope found</div>
+    <div class="issue-opt" onclick="pickIssue(this)"><span class="ico">&#9888;</span> Safety concern</div>
+
+    <div class="sec">Details for the office</div>
+    <textarea placeholder="Describe the issue, attach a photo if useful"></textarea>
+
+    <div class="actionbar"><button class="capbtn primary full" onclick="submitIssue()">Send to office</button></div>
   </div>
 </div>
 
-<div class="foot">Field User runs on a separate mobile portal, not a restricted view of the office platform.<br>This is an early reference prototype defining the fields, not final design.</div>
+<div class="foot">Field User runs on a separate mobile portal, not a restricted view of the office platform.<br>Reference prototype defining the fields and flow, not final design. Nothing is saved.</div>
+
+<input type="file" id="filePick" multiple style="display:none">
 
 <script>
-  function openJob(){ document.getElementById('listView').classList.add('hide'); document.getElementById('detailView').classList.remove('hide'); window.scrollTo(0,0); }
-  function closeJob(){ document.getElementById('detailView').classList.add('hide'); document.getElementById('listView').classList.remove('hide'); window.scrollTo(0,0); }
+  var views = ['listView','detailView','completeView','issueView'];
+  function show(id){ views.forEach(function(v){ document.getElementById(v).classList.toggle('hide', v !== id); }); window.scrollTo(0,0); }
+  function openJob(){ fieldTab('d-details', document.querySelector('.ftab')); show('detailView'); }
+  function closeJob(){ show('listView'); }
+  function showComplete(){ show('completeView'); }
+  function showIssue(){ show('issueView'); }
+  function backToDetail(){ show('detailView'); }
+  function submitDone(){ closeJob(); }
+  function submitIssue(){ backToDetail(); }
+  function fieldTab(id, btn){
+    ['d-details','d-history','d-capture'].forEach(function(t){ document.getElementById(t).classList.toggle('hide', t !== id); });
+    document.querySelectorAll('.ftab').forEach(function(b){ b.classList.toggle('active', b === btn); });
+  }
   document.querySelectorAll('.schip').forEach(function(c){ c.addEventListener('click', function(){ document.querySelectorAll('.schip').forEach(function(x){x.classList.remove('on');}); c.classList.add('on'); }); });
+  function pickRadio(el){ document.querySelectorAll('#completeView .radio').forEach(function(r){ r.classList.remove('on'); }); el.classList.add('on'); }
+  function pickIssue(el){ document.querySelectorAll('.issue-opt').forEach(function(r){ r.classList.remove('on'); }); el.classList.add('on'); }
+
+  function toggleEl(id){ document.getElementById(id).classList.toggle('hide'); }
+  function toggleBtn(btn){ btn.classList.toggle('on'); }
+  function toggleClock(btn){ btn.classList.toggle('on'); }
+
+  function addNote(){
+    var t = document.getElementById('noteText').value.trim() || 'New note';
+    var vis = document.getElementById('noteVis').value.indexOf('Public') > -1 ? 'public' : 'internal';
+    var el = document.createElement('div'); el.className = 'noteline';
+    el.innerHTML = t.replace(/</g,'&lt;') + '<div class="meta">Keith E. · just now · ' + vis + '</div>';
+    var list = document.getElementById('noteList'); list.insertBefore(el, list.firstChild);
+    document.getElementById('noteText').value = ''; toggleEl('noteForm');
+  }
+  function addMat(){
+    var name = document.getElementById('matName').value.trim() || 'New part';
+    var qty = document.getElementById('matQty').value.trim() || '1';
+    var cost = document.getElementById('matCost').value.trim();
+    var el = document.createElement('div'); el.className = 'li';
+    el.innerHTML = '<div><b>' + name.replace(/</g,'&lt;') + '</b><div class="sub">Qty ' + qty.replace(/</g,'&lt;') + '</div></div><span>' + (cost ? ('$' + cost.replace(/</g,'&lt;')) : '') + '</span>';
+    document.getElementById('matList').appendChild(el);
+    document.getElementById('matName').value=''; document.getElementById('matQty').value=''; document.getElementById('matCost').value=''; toggleEl('matForm');
+  }
+  function addExp(){
+    var type = document.getElementById('expType').value;
+    var amt = document.getElementById('expAmt').value.trim();
+    var vendor = document.getElementById('expVendor').value.trim() || 'Vendor';
+    var el = document.createElement('div'); el.className = 'li';
+    el.innerHTML = '<div><b>' + vendor.replace(/</g,'&lt;') + '</b><div class="sub">' + type + ' · billable</div></div><span>' + (amt ? ('$' + amt.replace(/</g,'&lt;')) : '') + '</span>';
+    document.getElementById('expList').appendChild(el);
+    document.getElementById('expAmt').value=''; document.getElementById('expVendor').value=''; toggleEl('expForm');
+  }
+
+  // file explorer for photos and receipts
+  var fp = document.getElementById('filePick'); var fpMode = null, fpBtn = null;
+  function pickFile(el, mode){ fpMode = mode; fpBtn = el; fp.click(); }
+  fp.addEventListener('change', function(){
+    if(!fp.files.length) return;
+    var name = fp.files[0].name;
+    if(fpMode === 'photo'){
+      var tile = document.createElement('div'); tile.className = 'photo filled';
+      tile.textContent = name.length > 8 ? name.slice(0,7) + '…' : name;
+      tile.title = name;
+      var list = document.getElementById('photoList'); list.insertBefore(tile, fpBtn.nextSibling);
+    } else if(fpMode === 'receipt' && fpBtn){
+      fpBtn.textContent = fp.files.length > 1 ? (fp.files.length + ' files') : name;
+      fpBtn.classList.add('on');
+    }
+    fp.value = '';
+  });
 </script>

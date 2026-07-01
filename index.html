@@ -4,32 +4,32 @@
 <title>Witkowski Mechanical, Dashboards (Reference Prototype)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy-900:#0E2438; --navy-800:#15324C; --navy-700:#1D4364;
-    --blue-600:#1F6FB2; --blue-500:#2B83C9; --blue-50:#EAF3FA;
-    --bg:#F4F7FA; --surface:#FFFFFF;
-    --ink:#14202E; --ink-muted:#5A6B7B; --ink-faint:#8A98A6;
-    --border:#E3E9F0; --border-strong:#CFD9E3;
+    --navy-900:#081F57; --navy-800:#0A2564; --navy-700:#0C2C77;
+    --blue-600:#0C2C77; --blue-500:#163B8F; --blue-50:#E7ECF7;
+    --bg:#F2F4F8; --surface:#FFFFFF;
+    --ink:#1E2430; --ink-muted:#555B66; --ink-faint:#7A828C;
+    --border:#E4E7EC; --border-strong:#CDD3DB;
     --amber:#C8861B; --amber-bg:#FBF1DC;
-    --shadow:0 1px 2px rgba(14,36,56,.06), 0 8px 26px rgba(14,36,56,.08);
+    --shadow:0 1px 2px rgba(8,31,87,.05), 0 8px 26px rgba(8,31,87,.08);
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
   body{
-    background:radial-gradient(1200px 500px at 50% -10%, #12314B 0%, var(--navy-900) 55%);
-    color:var(--ink); font-family:"Inter",system-ui,sans-serif; font-size:15px; line-height:1.5;
+    background:radial-gradient(1200px 500px at 50% -10%, #14399A 0%, var(--navy-900) 55%);
+    color:var(--ink); font-family:"Open Sans",system-ui,sans-serif; font-size:15px; line-height:1.5;
     -webkit-font-smoothing:antialiased; min-height:100vh; display:flex; flex-direction:column; align-items:center;
     padding:56px 18px 48px;
   }
   .brand{display:flex; align-items:center; gap:13px; margin-bottom:26px}
   .brand-mark{width:44px; height:44px; border-radius:11px; flex:none; background:linear-gradient(145deg,var(--blue-500),var(--blue-600)); display:grid; place-items:center; color:#fff}
-  .brand-name{font-family:"Space Grotesk",sans-serif; font-weight:600; color:#fff; font-size:19px; letter-spacing:.2px; line-height:1.1}
+  .brand-name{font-family:"Poppins",sans-serif; font-weight:600; color:#fff; font-size:19px; letter-spacing:.2px; line-height:1.1}
   .brand-sub{font-size:12px; color:#8CA1B6; letter-spacing:.3px}
 
   .head{text-align:center; max-width:640px; margin-bottom:8px}
-  .head h1{font-family:"Space Grotesk",sans-serif; color:#fff; font-size:26px; font-weight:600; margin:0 0 8px; letter-spacing:-.2px}
+  .head h1{font-family:"Poppins",sans-serif; color:#fff; font-size:26px; font-weight:600; margin:0 0 8px; letter-spacing:-.2px}
   .head p{color:#AFC0D1; font-size:14px; margin:0}
   .devnote{display:inline-flex; align-items:center; gap:8px; margin:16px 0 30px; font-size:12px; font-weight:600; color:#CBB27A; background:rgba(200,134,27,.12); border:1px solid rgba(200,134,27,.35); padding:7px 13px; border-radius:999px}
 
@@ -40,16 +40,16 @@
     transition:transform .12s ease, box-shadow .12s ease; position:relative; overflow:hidden;
   }
   .card::before{content:""; position:absolute; left:0; top:0; right:0; height:4px}
-  .card.admin::before{background:var(--blue-600)}
-  .card.office::before{background:var(--green,#2E9E6B)}
-  .card.field::before{background:var(--amber)}
+  .card.admin::before{background:#0C2C77}
+  .card.office::before{background:#0E7490}
+  .card.field::before{background:#C8861B}
   .card:hover{transform:translateY(-3px); box-shadow:0 12px 34px rgba(14,36,56,.16)}
   .card:focus-visible{outline:3px solid var(--blue-500); outline-offset:2px}
   .ico{width:46px; height:46px; border-radius:11px; display:grid; place-items:center; margin-bottom:14px}
-  .card.admin .ico{background:var(--blue-50); color:var(--blue-600)}
-  .card.office .ico{background:#E7F4EE; color:#2E9E6B}
-  .card.field .ico{background:var(--amber-bg); color:var(--amber)}
-  .card h2{font-family:"Space Grotesk",sans-serif; font-size:17px; font-weight:600; margin:0 0 3px}
+  .card.admin .ico{background:var(--blue-50); color:#0C2C77}
+  .card.office .ico{background:#E0F0F3; color:#0E7490}
+  .card.field .ico{background:#FBF1DC; color:#C8861B}
+  .card h2{font-family:"Poppins",sans-serif; font-size:17px; font-weight:600; margin:0 0 3px}
   .role{font-size:12px; font-weight:600; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px}
   .card p{font-size:13px; color:var(--ink-muted); margin:0 0 14px; flex:1}
   .tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px}
@@ -62,7 +62,7 @@
 </style>
 
 <div class="brand">
-  <div class="brand-mark"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></div>
+  <img class="brand-logo" src="assets/witkowski-logo.webp" alt="Witkowski Mechanical" style="width:48px;height:48px;object-fit:contain;flex:none">
   <div>
     <div class="brand-name">Witkowski Mechanical</div>
     <div class="brand-sub">Operations Platform · FieldEdge replacement</div>
