@@ -287,6 +287,39 @@
   }
   .menu-btn{display:none; place-items:center; width:38px; height:38px; border-radius:8px; border:1px solid var(--border); background:var(--surface); cursor:pointer}
   @media (prefers-reduced-motion:reduce){*{transition:none !important}}
+
+  /* Modals (create / detail-edit) */
+  .modal-overlay{position:fixed; inset:0; background:rgba(14,36,56,.45); display:none; align-items:flex-start; justify-content:center; padding:40px 16px; z-index:50; overflow-y:auto}
+  .modal-overlay.open{display:flex}
+  .modal{background:var(--surface); border-radius:14px; box-shadow:0 20px 60px rgba(14,36,56,.32); width:100%; max-width:720px; overflow:hidden; animation:pop .12s ease}
+  .modal.lg{max-width:880px}
+  @keyframes pop{from{transform:translateY(8px); opacity:.5}to{transform:none; opacity:1}}
+  .modal-head{display:flex; align-items:center; justify-content:space-between; padding:15px 20px; border-bottom:1px solid var(--border)}
+  .modal-head h3{margin:0; font-family:"Space Grotesk",sans-serif; font-size:16px; font-weight:600}
+  .modal-x{border:0; background:var(--bg); width:30px; height:30px; border-radius:8px; cursor:pointer; color:var(--ink-muted); font-size:14px; display:grid; place-items:center}
+  .modal-x:hover{background:#E7ECF2; color:var(--ink)}
+  .modal-body{padding:18px 20px; max-height:64vh; overflow-y:auto}
+  .modal-foot{display:flex; align-items:center; justify-content:flex-end; gap:10px; padding:13px 20px; border-top:1px solid var(--border); background:#FAFCFE}
+  .frm-sec{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; color:var(--ink-faint); margin:18px 0 10px}
+  .frm-sec:first-child{margin-top:0}
+  .frm-grid{display:grid; grid-template-columns:1fr 1fr; gap:13px}
+  .fld{display:flex; flex-direction:column; gap:5px}
+  .fld.full{grid-column:1 / -1}
+  .fld label{font-size:12px; font-weight:600; color:var(--ink-muted)}
+  .fld label .opt{color:var(--ink-faint); font-weight:500}
+  .fld input,.fld select,.fld textarea{border:1px solid var(--border-strong); border-radius:8px; padding:9px 11px; font:inherit; font-size:13px; color:var(--ink); background:var(--surface); width:100%}
+  .fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--blue-500); outline-offset:0; border-color:var(--blue-500)}
+  .fld textarea{min-height:62px; resize:vertical}
+  .fld .hint{font-size:11px; color:var(--ink-faint)}
+  .scaffold{border:1px dashed var(--border-strong); border-radius:10px; padding:18px 16px; background:#FAFCFE; text-align:center; color:var(--ink-muted); font-size:13px}
+  .scaffold b{color:var(--ink); font-family:"Space Grotesk",sans-serif}
+  .chips-list{display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; justify-content:center}
+  .chips-list span{font-size:11.5px; background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:4px 9px; color:var(--ink-muted)}
+  .det-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+  .det-card{border:1px solid var(--border); border-radius:9px; padding:10px 12px}
+  .det-card .l{font-size:10.5px; text-transform:uppercase; letter-spacing:.5px; color:var(--ink-faint)}
+  .det-card .v{font-family:"Space Grotesk",sans-serif; font-weight:600; font-size:15px; margin-top:3px}
+  @media (max-width:640px){ .frm-grid,.det-cards{grid-template-columns:1fr} }
 </style>
 
 <div class="shell">
@@ -337,14 +370,10 @@
         <input placeholder="Search customers, work orders, invoices" aria-label="Search">
       </div>
       <div class="topbar-right">
-        <div class="role-switch">
-          <span class="role-label">View as</span>
-          <div class="role-pills" role="group" aria-label="Switch role view">
-            <button class="role-pill" data-role="admin" aria-pressed="true">Admin</button>
-            <button class="role-pill" data-role="office" aria-pressed="false">Office</button>
-            <button class="role-pill" data-role="field" aria-pressed="false">Field</button>
-          </div>
-        </div>
+        <a href="index.html" title="Choose another dashboard" style="display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--ink-muted);text-decoration:none;border:1px solid var(--border);padding:7px 12px;border-radius:8px">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          All dashboards
+        </a>
         <div class="who">
           <div class="avatar" id="avatar">AM</div>
           <div>
@@ -804,6 +833,15 @@
   </div>
 </div>
 
+<!-- MODAL (create / detail-edit) -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalBox" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head"><h3 id="modalTitle"></h3><button class="modal-x" id="modalX" aria-label="Close">&#10005;</button></div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot" id="modalFoot"></div>
+  </div>
+</div>
+
 <script>
   // ---------- Screen router ----------
   const screenMeta = {
@@ -919,4 +957,147 @@
   // ---------- Mobile menu ----------
   const menuBtn = document.getElementById('menuBtn');
   menuBtn && menuBtn.addEventListener('click', () => side.classList.toggle('open'));
+</script>
+
+<script>
+  // ---------- Create / detail modals (reference prototype, nothing is persisted) ----------
+  (function(){
+    var overlay = document.getElementById('modalOverlay');
+    if(!overlay) return;
+    var titleEl = document.getElementById('modalTitle');
+    var bodyEl  = document.getElementById('modalBody');
+    var footEl  = document.getElementById('modalFoot');
+    var boxEl   = document.getElementById('modalBox');
+
+    function open(title, body, foot, big){
+      titleEl.textContent = title;
+      bodyEl.innerHTML = body;
+      footEl.innerHTML = foot || defaultFoot('Save');
+      boxEl.classList.toggle('lg', !!big);
+      overlay.classList.add('open');
+      bodyEl.scrollTop = 0;
+    }
+    function close(){ overlay.classList.remove('open'); }
+    window._closeModal = close;
+    document.getElementById('modalX').addEventListener('click', close);
+    overlay.addEventListener('click', function(e){ if(e.target === overlay) close(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+
+    function defaultFoot(saveLabel){
+      return '<span style="margin-right:auto;font-size:11.5px;color:var(--ink-faint)">Reference prototype, nothing is saved</span>'
+        + '<button class="btn" onclick="_closeModal()">Cancel</button>'
+        + '<button class="btn primary" onclick="_closeModal()">' + saveLabel + '</button>';
+    }
+
+    var LABELS = {customers:'Customer', sites:'Site', workorders:'Work Order', quotes:'Quote', purchasing:'Part Request', jobs:'Job', invoices:'Invoice'};
+    var SCREEN2ENTITY = {'sc-customers':'customers','sc-sites':'sites','sc-workorders':'workorders','sc-dispatch':'workorders','sc-quotes':'quotes','sc-purchasing':'purchasing','sc-jobcosting':'jobs','sc-invoices':'invoices'};
+
+    // ---- field helpers ----
+    function esc(v){ return (v||'').replace(/"/g,'&quot;'); }
+    function fld(label,type,ph,val,hint,full){
+      var input = (type==='textarea')
+        ? '<textarea placeholder="'+esc(ph)+'">'+(val||'')+'</textarea>'
+        : '<input placeholder="'+esc(ph)+'" value="'+esc(val)+'">';
+      return '<div class="fld'+(full?' full':'')+'"><label>'+label+'</label>'+input+(hint?'<span class="hint">'+hint+'</span>':'')+'</div>';
+    }
+    function sel(label,opts,note,full){
+      var o = opts.split(',').map(function(x){ return '<option>'+x.trim()+'</option>'; }).join('');
+      return '<div class="fld'+(full?' full':'')+'"><label>'+label+(note?' <span class="opt">'+note+'</span>':'')+'</label><select>'+o+'</select></div>';
+    }
+
+    // ---- Customers: full form (exemplar) ----
+    function customerForm(d){
+      d = d || {};
+      return ''
+      + '<div class="frm-sec">Identity</div><div class="frm-grid">'
+        + fld('Name','input','e.g. Pat Bell', d.name, 'An ID number suffix is assigned automatically, for example Pat Bell 3854')
+        + sel('Customer type','Residential,Commercial,Existing Customer','(optional)')
+        + fld('Primary contact','input','Contact person', d.contact)
+        + fld('Tags','input','Commercial, Service', d.tags)
+      + '</div>'
+      + '<div class="frm-sec">Contact</div><div class="frm-grid">'
+        + fld('Phone','input','410 555 0000', d.phone)
+        + fld('Email','input','name@example.com', d.email)
+        + fld('Project manager','input','Assigned manager', d.pm)
+        + sel('Bill from office','On,Off','')
+      + '</div>'
+      + '<div class="frm-sec">Address</div><div class="frm-grid">'
+        + fld('Street address','input','88 Maple Court', d.addr, '', true)
+        + fld('City','input','Towson', d.city)
+        + fld('State','input','MD', d.state)
+        + fld('ZIP code','input','21204', d.zip)
+        + fld('Site','input','Primary site name', d.site)
+      + '</div>'
+      + '<div class="frm-sec">Billing and relationship</div><div class="frm-grid">'
+        + sel('Parent customer','None,Dominion Management','for sub customer billing rollup')
+        + sel('Terms','Due on receipt,Net 30','')
+        + sel('Tax group','MD Tax Code','')
+        + fld('Tax code','input','NON', d.taxcode)
+      + '</div>'
+      + '<div class="frm-sec">Sources</div><div class="frm-grid">'
+        + sel('Customer source','Referral,Google,Repeat','(optional)')
+        + sel('Work order lead source','Existing Customer,Referral,Google','(optional, was required in FieldEdge)')
+      + '</div>'
+      + '<div class="frm-sec">Pinned note</div>'
+      + fld('Pinned note','textarea','One note shown on every job for this customer, for example a lockbox code', d.pin, 'Shown on every job for this customer.', true);
+    }
+    function card(l,v){ return '<div class="det-card"><div class="l">'+l+'</div><div class="v">'+v+'</div></div>'; }
+    function customerDetail(name){
+      return ''
+      + '<div class="det-cards">'
+        + card('Overview','Last Jun 28') + card('Work orders','3 open') + card('Invoices','$6.9k open')
+        + card('Quotes','1 pending') + card('Jobs','1 in progress') + card('Equipment','4 on record')
+      + '</div>'
+      + '<div class="pinned" style="margin:14px 0"><b>Pinned note</b>Code is 6668 or 0317. Aggressive dog, go around back.</div>'
+      + '<div class="frm-sec">Profile</div>'
+      + customerForm({name:name, phone:'410 555 0188', addr:'88 Maple Court', contact:name, city:'Towson', state:'MD', zip:'21204'});
+    }
+
+    // ---- other entities: scaffold with candidate fields (defined module by module) ----
+    var CANDIDATES = {
+      sites:['Site address','Customer','Parent account','City / State / ZIP','Open work orders','Equipment on record','Site notes'],
+      workorders:['Customer','Site / address','Task','Primary tech','Priority','Promised appointment','Description (public)','Work summary','Lead source (optional)','Sales rep','Class','Resolution','Customer PO','Tags'],
+      quotes:['Customer','Site','Quote date','Expiration date','Tax group','Customer PO','Quote type (single / multi option)','Quote options','Line items (item, qty, rate, amount, tax)','Performance pay'],
+      purchasing:['Linked work order / job','Requester','Vendor','PO number','Request date','Requested delivery','Ship to','Items (item, qty, cost, amount)','Notes'],
+      jobs:['Job number','Customer','Address','Project manager','Bill to','Estimated revenue','Estimated costs'],
+      invoices:['Bill to','Terms','Transaction date','Due date','Billing address','Customer PO','Tax group','Items (item, qty, rate, amount, tax)']
+    };
+    function scaffold(entity, mode){
+      var list = (CANDIDATES[entity]||[]).map(function(f){ return '<span>'+f+'</span>'; }).join('');
+      return '<div class="scaffold"><b>'+(mode==='detail'?'Record detail and edit':'Create form')+' for '+(LABELS[entity]||entity)+'</b>'
+        + '<div style="margin-top:6px">These fields will be defined together, module by module. Candidate fields from FieldEdge:</div>'
+        + '<div class="chips-list">'+list+'</div></div>';
+    }
+
+    function footEdit(){
+      return '<span style="margin-right:auto;font-size:11.5px;color:var(--ink-faint)">Reference prototype, nothing is saved</span>'
+        + '<button class="btn" onclick="_closeModal()">Close</button>'
+        + '<button class="btn primary" onclick="_closeModal()">Save changes</button>';
+    }
+    function openCreate(entity){
+      if(entity === 'customers'){ open('New customer', customerForm(), null, false); return; }
+      open('New ' + (LABELS[entity]||entity), scaffold(entity,'create'), null, false);
+    }
+    function openDetail(entity, tr){
+      var cell = tr.querySelector('.nm') || tr.querySelector('td');
+      var label = cell ? cell.innerText.trim().split('\n')[0].trim() : '';
+      if(entity === 'customers'){ open('Customer, ' + label, customerDetail(label), footEdit(), true); return; }
+      open((LABELS[entity]||entity) + (label ? ', ' + label : ''), scaffold(entity,'detail'), footEdit(), true);
+    }
+
+    // ---- delegation: wire every "+ New" button and every table row ----
+    document.addEventListener('click', function(e){
+      if(overlay.contains(e.target)) return;
+      var btn = e.target.closest('.btn.primary');
+      if(btn){
+        var sc = btn.closest('.screen');
+        if(sc && SCREEN2ENTITY[sc.id]){ e.preventDefault(); openCreate(SCREEN2ENTITY[sc.id]); return; }
+      }
+      var tr = e.target.closest('tr');
+      if(tr && tr.parentElement && tr.parentElement.tagName === 'TBODY'){
+        var tbl = tr.closest('table'), sc2 = tr.closest('.screen');
+        if(tbl && tbl.classList.contains('tbl') && sc2 && SCREEN2ENTITY[sc2.id]){ openDetail(SCREEN2ENTITY[sc2.id], tr); }
+      }
+    });
+  })();
 </script>
